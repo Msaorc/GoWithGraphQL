@@ -17,9 +17,9 @@ func NewCategory(db *sql.DB) *Category {
 	return &Category{db: db}
 }
 
-func (c *Category) Create(name, string, description string) (Category, error) {
+func (c *Category) Create(name string, description string) (Category, error) {
 	id := uuid.New().String()
-	_, err := c.db.Exec("INSERT INTO categories (id, name, description) VALUES ($1, $2, $3)",
+	_, err := c.db.Exec("INSERT INTO category (id, name, description) VALUES ($1, $2, $3)",
 		id, name, description)
 	if err != nil {
 		return Category{}, err
