@@ -18,9 +18,9 @@ func NewCourse(db *sql.DB) *Course {
 	return &Course{db: db}
 }
 
-func (c *Course) create(name string, description string, categoryID string) (Course, error) {
+func (c *Course) Create(name string, description string, categoryID string) (Course, error) {
 	id := uuid.New().String()
-	_, err := c.db.Exec("INSERT INTO category (id, name, description, category_id) VALUES ($1, $2, $3, $4)",
+	_, err := c.db.Exec("INSERT INTO courses (id, name, description, category_id) VALUES ($1, $2, $3, $4)",
 		id, name, description, categoryID)
 	if err != nil {
 		return Course{}, err
